@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="Logo_hoc_vien_ANND.png" type="image/png">
+<link href="style_qlbdgckhv.css" rel="stylesheet">
+<title>Quản lý thông tin bài dạy giỏi cấp khoa, học viện</title>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+</head>
+
+<body>
+	<div id="page-title" class="page-title"><h1 class="animate__animated animate__flash">Quản lý thông tin bài dạy giỏi cấp khoa, học viện</h1></div>
+	<div id="pick-me" class="pick-me-text hidden"><h1 class="animate__animated animate__fadeInUp">Chọn danh mục quản lý</h1></div>
+	<div id="go-back-button" class="hidden"><button id="go-back" class="fb-1 animate__animated animate__fadeIn">Quay lại</button></div>
+	<div class="fb">
+	<div id="pick-me1" class="pick-me-button hidden"><button class="fb1 animate__animated animate__fadeInUp" >Bài dạy giỏi cấp Khoa</button></div>
+	<button id="starts" class="fb0 animate__animated animate__fadeInUp">Bắt đầu làm việc</button>
+	<div id="pick-me2" class="pick-me-button hidden"><button class="fb2 animate__animated animate__fadeInUp" >Bài dạy giỏi cấp Học viện</button></div>
+	</div>
+	<script>
+		
+		document.getElementById("starts").onclick = () => 
+		{
+			let isAnimating = false;
+			if (isAnimating) return;
+			isAnimating = true;
+			
+			document.getElementById("pick-me").classList.add("animate__animated", "animate__fadeInUp");
+			document.getElementById("pick-me").classList.remove("animate__animated", "hidden");
+			
+			document.getElementById("pick-me1").classList.add("animate__animated", "animate__fadeInUp");
+			document.getElementById("pick-me1").classList.remove("animate__animated", "hidden");
+			
+			document.getElementById("pick-me2").classList.add("animate__animated", "animate__fadeInUp");
+			document.getElementById("pick-me2").classList.remove("animate__animated", "hidden");
+			
+			document.getElementById("go-back-button").classList.add("animate__animated", "animate__fadeIn");
+			document.getElementById("go-back-button").classList.remove("animate__animated", "hidden");
+			
+			const btn = document.querySelector(".fb0");
+			btn.style.pointerEvents = "none";
+			btn.classList.add("animate__animated", "animate__fadeOutUp");
+			btn.addEventListener("animationend", () => 
+			{
+  				btn.classList.add("hidden");
+			}, { once: true });
+
+			document.getElementById("page-title").classList.add("animate__animated", "animate__fadeOutUp");
+			
+			document.querySelectorAll(".fb1, .fb2, .fb-1").forEach(bt => 
+		{
+			bt.classList.remove("hidden");
+			bt.classList.remove("animate__fadeOutDown");
+			bt.classList.add("animate__animated", "animate__fadeInUp");
+			bt.style.pointerEvents = "auto";
+		});
+			setTimeout(() => {
+			isAnimating = false;
+		}, 	600);
+		};
+	</script>
+	<script>
+		document.getElementById("go-back").onclick = () =>
+		{
+			let isAnimating = false;
+			if (isAnimating) return;
+			isAnimating = true;
+			document.getElementById("page-title").classList.add("animate__animated", "animate__fadeInDown");
+			document.getElementById("page-title").classList.remove("animate__fadeOutUp");
+		
+			document.getElementById("starts").classList.add("animate__animated", "animate__fadeInDown");
+			document.getElementById("starts").classList.remove("animate__fadeOutUp", "hidden");
+			const btn = document.querySelector(".fb0");
+			btn.style.pointerEvents = "auto";
+		
+			const pickMe = document.getElementById("pick-me");
+			pickMe.classList.add("hidden");	
+
+			document.querySelectorAll(".fb1, .fb2, .fb-1").forEach(bt => 
+			{
+				bt.classList.add("animate__fadeOutDown");
+				bt.classList.add("hidden");
+				bt.classList.remove("animate__animated", "animate__fadeInUp");
+				bt.style.pointerEvents = "none";
+			});
+				setTimeout(() => {
+				isAnimating = false;
+		}, 600);
+		};
+	</script>
+</body>
+</html>
