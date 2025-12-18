@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" href="Logo_hoc_vien_ANND.png" type="image/png">
-<link href="./style.css" rel="stylesheet">
+<link href="./style_qlbdgckhv.css" rel="stylesheet">
 <title>Quản lý thông tin bài dạy giỏi cấp khoa, học viện</title>
 <link
     rel="stylesheet"
@@ -114,9 +114,16 @@
 				document.getElementById("progress").classList.add("animate__animated", "animate__bounceIn");
 				document.getElementById("progress").classList.remove("hidden");
 			})
+			
+			const link = document.getElementById("progress");
+			link.addEventListener("animationend", () =>
+			{
+				setTimeout(() =>
+				{
+					location.href = "qlbdgckhv.html";
+				}, 4250);
+			}, {once: true });
 		}
 	</script>			<!--Function cho cái nút chọn bài cấp Học viện-->
 </body>
 </html>
-
-
