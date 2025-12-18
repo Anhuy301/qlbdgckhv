@@ -2,8 +2,10 @@
 /* CSS Document */
 body
 {
-	 min-height: 100vh;
-     background: linear-gradient(
+	margin: 0;
+	overflow: hidden;
+	min-height: 100vh;
+    background: linear-gradient(
     270deg,
     #00c6ff,
     #3a7bd5,
@@ -63,7 +65,7 @@ button:hover
 	height: 12vh;
 	width: 48vh;
 	font-size:3.8vh;
-	margin-top: 36.6vh;
+	margin-top: 15vh;
 	border-radius:12px;
 	background: rgba(8,102,255,1.00);
 	font-family: sans-serif;
@@ -72,7 +74,7 @@ button:hover
 	transition: all 0.3s ease;	
 	border: none;
 	text-align: center;
-	position: fixed;
+	position: absolute fixed;
 }
 .fb1
 {
@@ -89,20 +91,30 @@ button:hover
 	display: flex;
 	justify-content: center;
 }
-.fb-1
+.progress {
+	margin-left: 34vh;
+	width: 150vh;
+	height: 20px;
+	background: #e0e0e0;
+	border-radius: 10px;
+	overflow: hidden;
+	
+}
+.loading
 {
 	position: absolute;
-	height: 5vh;
-	width: 20vh;
-	font-size:2.8vh;
-	margin-top: -27vh;
-	margin-left: 4vh;
-	border-radius:12px;
-	background: rgba(8,102,255,1.00);
-	font-family: sans-serif;
-	color:white;
-	cursor:pointer;
-	transition: all 0.3s ease;	
-	border: none;
-	
+	margin-top: -3%;
+	left: 42.8%;	
+	transform: translate(-50%, -50%);
+}
+@keyframes load
+{
+	from { width: 0; }
+	to { width: 100%; }
+}
+.progress-bar
+{
+	height: 100%;
+	background: linear-gradient(90deg, #00c6ff, #0072ff);
+	animation: load 5s ease-out forwards;
 }
