@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" href="Logo_hoc_vien_ANND.png" type="image/png">
-<link href="style_qlbdgckhv.css" rel="stylesheet">
+<link href="./style_qlbdgckhv.css" rel="stylesheet">
 <title>Quản lý thông tin bài dạy giỏi cấp khoa, học viện</title>
 <link
     rel="stylesheet"
@@ -12,84 +12,109 @@
 </head>
 
 <body>
-	<div id="page-title" class="page-title"><h1 class="animate__animated animate__flash">Quản lý thông tin bài dạy giỏi cấp khoa, học viện</h1></div>
+	<div id="page-title" class="page-title"><h1 class="animate__animated animate__fadeInDown">Quản lý thông tin bài dạy giỏi cấp khoa, học viện</h1></div>
 	<div id="pick-me" class="pick-me-text hidden"><h1 class="animate__animated animate__fadeInUp">Chọn danh mục quản lý</h1></div>
-	<div id="go-back-button" class="hidden"><button id="go-back" class="fb-1 animate__animated animate__fadeIn">Quay lại</button></div>
+	<div id="loading" class="loading hidden"><h1 class="animate__animated animate__bounceIn">Loading</h1></div>
+	
+	
 	<div class="fb">
-	<div id="pick-me1" class="pick-me-button hidden"><button class="fb1 animate__animated animate__fadeInUp" >Bài dạy giỏi cấp Khoa</button></div>
-	<button id="starts" class="fb0 animate__animated animate__fadeInUp">Bắt đầu làm việc</button>
-	<div id="pick-me2" class="pick-me-button hidden"><button class="fb2 animate__animated animate__fadeInUp" >Bài dạy giỏi cấp Học viện</button></div>
+		<div id="pick-me1" class="pick-me-button hidden"><button class="fb1 animate__animated animate__fadeInUp" id="fbck">Bài dạy giỏi cấp Khoa</button></div>
+		<button id="starts" class="fb0 animate__animated animate__fadeInUp">Bắt đầu làm việc</button>
+		<div id="pick-me2" class="pick-me-button hidden"><button class="fb2 animate__animated animate__fadeInUp" id="fbchv">Bài dạy giỏi cấp Học viện</button></div>
 	</div>
+	
+	
+	
+	<div id="progress" class="progress animate__animated animate__bounceIn hidden">
+  		<div id="bar" class="progress-bar"></div>
+	</div>
+
+	<script>
+		let value = 0;
+		const bar = document.getElementById("bar");
+
+		const interval = setInterval(() => {
+  		value += 1;
+  		bar.style.width = value + "%";
+  		if (value >= 100) clearInterval(interval);
+		}, 50);
+	</script> 			<!--Animation cho cái progress bar-->
+	
 	<script>
 		
 		document.getElementById("starts").onclick = () => 
 		{
-			let isAnimating = false;
-			if (isAnimating) return;
-			isAnimating = true;
 			
 			document.getElementById("pick-me").classList.add("animate__animated", "animate__fadeInUp");
-			document.getElementById("pick-me").classList.remove("animate__animated", "hidden");
+			document.getElementById("pick-me").classList.remove("hidden");
 			
 			document.getElementById("pick-me1").classList.add("animate__animated", "animate__fadeInUp");
-			document.getElementById("pick-me1").classList.remove("animate__animated", "hidden");
+			document.getElementById("pick-me1").classList.remove("hidden");
 			
 			document.getElementById("pick-me2").classList.add("animate__animated", "animate__fadeInUp");
-			document.getElementById("pick-me2").classList.remove("animate__animated", "hidden");
-			
-			document.getElementById("go-back-button").classList.add("animate__animated", "animate__fadeIn");
-			document.getElementById("go-back-button").classList.remove("animate__animated", "hidden");
-			
-			const btn = document.querySelector(".fb0");
-			btn.style.pointerEvents = "none";
-			btn.classList.add("animate__animated", "animate__fadeOutUp");
-			btn.addEventListener("animationend", () => 
-			{
-  				btn.classList.add("hidden");
-			}, { once: true });
-
+			document.getElementById("pick-me2").classList.remove("hidden");
+					
 			document.getElementById("page-title").classList.add("animate__animated", "animate__fadeOutUp");
 			
-			document.querySelectorAll(".fb1, .fb2, .fb-1").forEach(bt => 
-		{
-			bt.classList.remove("hidden");
-			bt.classList.remove("animate__fadeOutDown");
-			bt.classList.add("animate__animated", "animate__fadeInUp");
-			bt.style.pointerEvents = "auto";
-		});
-			setTimeout(() => {
-			isAnimating = false;
-		}, 	600);
-		};
-	</script>
+			const fb0 = document.querySelector(".fb0")
+			fb0.style.pointerEvents = "none";
+			fb0.classList.add("animate__animated", "animate__fadeOutDown");
+		}	
+	</script>			<!--Function cho cái nút Bắt đầu làm việc-->
+	
 	<script>
-		document.getElementById("go-back").onclick = () =>
+		document.getElementById("fbck").onclick = () =>
 		{
-			let isAnimating = false;
-			if (isAnimating) return;
-			isAnimating = true;
-			document.getElementById("page-title").classList.add("animate__animated", "animate__fadeInDown");
-			document.getElementById("page-title").classList.remove("animate__fadeOutUp");
-		
-			document.getElementById("starts").classList.add("animate__animated", "animate__fadeInDown");
-			document.getElementById("starts").classList.remove("animate__fadeOutUp", "hidden");
-			const btn = document.querySelector(".fb0");
-			btn.style.pointerEvents = "auto";
-		
-			const pickMe = document.getElementById("pick-me");
-			pickMe.classList.add("hidden");	
-
-			document.querySelectorAll(".fb1, .fb2, .fb-1").forEach(bt => 
+			document.getElementById("pick-me").classList.add("animate__animated", "animate__fadeOutUp");
+			document.getElementById("loading").classList.add("animate__animated", "animate__bounceIn");
+			document.getElementById("loading").classList.remove("hidden");
+			
+			const fb1 = document.querySelectorAll(".fb1, .fb2");
+			fb1.forEach(fb1 =>
 			{
-				bt.classList.add("animate__fadeOutDown");
-				bt.classList.add("hidden");
-				bt.classList.remove("animate__animated", "animate__fadeInUp");
-				bt.style.pointerEvents = "none";
-			});
-				setTimeout(() => {
-				isAnimating = false;
-		}, 600);
-		};
-	</script>
+				fb1.style.pointerEvents = "none";
+				fb1.classList.add("animate__animated", "animate__fadeOutDown");
+			})
+			
+			const bar = document.getElementById("loading");
+			bar.addEventListener("animationend", () =>
+			{
+				document.getElementById("progress").classList.add("animate__animated", "animate__bounceIn");
+				document.getElementById("progress").classList.remove("hidden");
+			})
+			
+			const link = document.getElementById("progress");
+			link.addEventListener("animationend", () =>
+			{
+				setTimeout(() =>
+				{
+					location.href = "qlbdgckhv.html";
+				}, 4250);
+			}, {once: true });
+		}
+	</script>			<!--Function cho cái nút chọn bài cấp khoa-->
+	
+	<script>
+		document.getElementById("fbchv").onclick = () =>
+		{
+			document.getElementById("pick-me").classList.add("animate__animated", "animate__fadeOutUp");
+			document.getElementById("loading").classList.add("animate__animated", "animate__bounceIn");
+			document.getElementById("loading").classList.remove("hidden");
+			
+			const fb2 = document.querySelectorAll(".fb1, .fb2")
+			fb2.forEach(fb2 =>
+			{
+				fb2.style.pointerEvents = "none";
+				fb2.classList.add("animate__animated", "animate__fadeOutDown");
+			})
+			
+			const bar = document.getElementById("loading");
+			bar.addEventListener("animationend", () =>
+			{
+				document.getElementById("progress").classList.add("animate__animated", "animate__bounceIn");
+				document.getElementById("progress").classList.remove("hidden");
+			})
+		}
+	</script>			<!--Function cho cái nút chọn bài cấp Học viện-->
 </body>
 </html>
